@@ -7,7 +7,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.dev
     ports:
-      - "5001:5173"
+      - "5173:5173"
     volumes:
       - ./frontend/src:/usr/src/app/frontend/src
       - ./frontend/static:/usr/src/app/frontend/static
@@ -18,3 +18,12 @@ services:
     environment:
       - PORT=5173
       - HOST=0.0.0.0
+  backend:
+    image: backend-golang
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend:/usr/src/app/backend
