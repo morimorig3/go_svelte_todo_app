@@ -7,7 +7,7 @@
 
 {#if tasks.length > 0}
 	<ul>
-		{#each tasks as { id, title } (id)}
+		{#each tasks as { id, title }, i (`${id}${i}`)}
 			<Task {id} {title} />
 		{/each}
 	</ul>
