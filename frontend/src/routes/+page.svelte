@@ -45,5 +45,7 @@
 
 <div class="flex flex-col gap-y-10">
 	<InputTask />
-	<TaskList {tasks} />
+	{#if tasks.length > 0}
+		<TaskList {tasks} />
+	{/if}
 </div>

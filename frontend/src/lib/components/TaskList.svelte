@@ -5,10 +5,8 @@
 	export let tasks: TaskType[] = [];
 </script>
 
-{#if tasks.length > 0}
-	<ul>
-		{#each tasks as { id, title }, i (`${id}${i}`)}
-			<Task {id} {title} />
-		{/each}
-	</ul>
-{:else}{/if}
+<ul>
+	{#each tasks as { id, title }, i (`${id}${i}`)}
+		<Task {id} {title} />
+	{/each}
+</ul>

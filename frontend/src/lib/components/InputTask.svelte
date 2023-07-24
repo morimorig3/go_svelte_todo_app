@@ -24,12 +24,10 @@
 		top: 0;
 		left: 10px;
 		bottom: 0;
-	}
-	.floating-label {
 		transition: 0.2s;
+		color: theme(colors.slate.400);
 	}
 	.floating-input:not(:placeholder-shown) + .floating-label {
-		color: theme(colors.slate.400);
 		transform: scale(0.6);
 		transform-origin: left top;
 	}
