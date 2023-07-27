@@ -14,6 +14,13 @@ services:
       - ./frontend/vite.config.ts:/usr/src/app/frontend/vite.config.ts
       - ./frontend/tsconfig.json:/usr/src/app/frontend/tsconfig.json
       - ./frontend/svelte.config.js:/usr/src/app/frontend/svelte.config.js
+      - ./frontend/.eslint.cjs:/usr/src/app/frontend/.eslint.cjs
+      - ./frontend/.eslintignore:/usr/src/app/frontend/.eslintignore
+      - ./frontend/.prettierrc:/usr/src/app/frontend/.prettierrc
+      - ./frontend/.prettierignore:/usr/src/app/frontend/.prettierignore
+      - ./frontend/postcss.config.cjs:/usr/src/app/frontend/postcss.config.cjs
+      - ./frontend/tailwind.config.js:/usr/src/app/frontend/tailwind.config.js
+      - ./frontend/.svelte-kit:/usr/src/app/frontend/.svelte-kit
     command: npm run dev
     environment:
       - PORT=5173
