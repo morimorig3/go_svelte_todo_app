@@ -3,7 +3,6 @@ package handler
 import (
 	"encoding/json"
 	"net/http"
-	"time"
 
 	"github.com/go-playground/validator/v10"
 	"github.com/morimorig3/go_svelte_todo_app/backend/entity"
@@ -38,8 +37,6 @@ func (at *AddTask) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	t := &entity.Task{
 		Title:   b.Title,
-		Status:  entity.TaskStatusTodo,
-		Created: time.Now(),
 	}
 	id, err := store.Tasks.Add(t)
 	if err != nil {
