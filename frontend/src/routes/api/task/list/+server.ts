@@ -1,6 +1,8 @@
+import { loadTaskList } from '$lib/server/task';
+import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async function () {
-	const res = await fetch('http://localhost:80/task/list');
-	return res;
+	const tasklist = await loadTaskList();
+	return json(tasklist);
 };

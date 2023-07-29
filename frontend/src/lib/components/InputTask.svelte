@@ -1,4 +1,19 @@
-<form method="POST" action="?/add">
+<script lang="ts">
+	import { enhance } from '$app/forms';
+
+	export let loadTasks: () => Promise<void>;
+</script>
+
+<form
+	method="POST"
+	action="?/add"
+	use:enhance={() => {
+		return async ({ update }) => {
+			await update();
+			await loadTasks();
+		};
+	}}
+>
 	<div class="flex flex-col gap-y-5">
 		<div class="floating-wrap h-12 w-full">
 			<input
