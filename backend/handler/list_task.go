@@ -19,7 +19,6 @@ func (lt *ListTask) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		rsp = append(rsp, entity.Task{
 			ID:     t.ID,
 			Title:  t.Title,
-			Status: t.Status,
 		})
 	}
 	RespondJSON(ctx, w, rsp, http.StatusOK)

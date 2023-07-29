@@ -2,7 +2,7 @@ package store
 
 import (
 	"errors"
-	"fmt"
+	"sort"
 
 	"github.com/morimorig3/go_svelte_todo_app/backend/entity"
 )
@@ -27,10 +27,9 @@ func (ts *TaskStore) Add(t *entity.Task) (entity.TaskID, error) {
 	return t.ID, nil
 }
 
-func (ts *TaskStore) Remove(id entity.TaskID) {
-	fmt.Printf("%v", ts.Tasks)
+func (ts *TaskStore) Remove(id entity.TaskID) entity.Tasks {
 	delete(ts.Tasks, id)
-	fmt.Printf("%v", ts.Tasks)
+	return ts.All()
 }
 
 func (ts *TaskStore) All() entity.Tasks {
@@ -39,8 +38,10 @@ func (ts *TaskStore) All() entity.Tasks {
 		tasks = append(tasks, &entity.Task{
 			ID:     t.ID,
 			Title:  t.Title,
-			Status: t.Status,
 		})
 	}
+	sort.Slice(tasks, func(i, j int) bool {
+        return tasks[i].ID < tasks[j].ID
+    })
 	return tasks
 }
