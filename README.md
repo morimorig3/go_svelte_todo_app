@@ -7,7 +7,7 @@
 学習を目的としたSvelteとGoによるTODOアプリです。Svelteはフロントエンド処理を担当させ、GoはTODOを管理するAPIを提供しています。双方のコンテナを作成しDockerのコンテナ間通信を行わせる。
 
 <div align="center">
-    <img src="./resource/todoapp.gif" wdith="400">
+    <img src="./resource/todoapp.gif" width="400">
 </div>
 
 ## Svelte
