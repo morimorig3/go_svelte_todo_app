@@ -1,8 +1,14 @@
 # TODOアプリ（ Svelte + Go + Docker ）
 
-<img src="./resource/banner.png">
+<div align="center">
+    <img src="./resource/banner.png">
+</div>
 
 学習を目的としたSvelteとGoによるTODOアプリです。Svelteはフロントエンド処理を担当させ、GoはTODOを管理するAPIを提供しています。双方のコンテナを作成しDockerのコンテナ間通信を行わせる。
+
+<div align="center">
+    <img src="./resource/todoapp.gif" wdith="640">
+</div>
 
 ## Svelte
 
