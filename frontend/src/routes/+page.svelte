@@ -2,50 +2,22 @@
 	import InputTask from '$lib/components/InputTask.svelte';
 	import TaskList from '$lib/components/TaskList.svelte';
 	import type { Task } from '$lib/types';
+	import { onMount } from 'svelte';
 
-	const tasks: Task[] = [
-		{
-			id: '1',
-			title: 'タスク1'
-		},
-		{
-			id: '2',
-			title: 'タスク2'
-		},
-		{
-			id: '3',
-			title: 'タスク3'
-		},
-		{
-			id: '1',
-			title: 'タスク1'
-		},
-		{
-			id: '2',
-			title: 'タスク2'
-		},
-		{
-			id: '3',
-			title: 'タスク3'
-		},
-		{
-			id: '1',
-			title: 'タスク1'
-		},
-		{
-			id: '2',
-			title: 'タスク2'
-		},
-		{
-			id: '3',
-			title: 'タスク3'
-		}
-	];
+	let tasks: Task[] = [];
+
+	async function loadTasks() {
+		tasks = await fetch(`/api/task/list`).then((res) => res.json());
+	}
+
+	onMount(() => {
+		loadTasks();
+	});
 </script>
 
 <div class="flex flex-col gap-y-10">
-	<InputTask />
+	<InputTask {loadTasks} />
 	{#if tasks.length > 0}
-		<TaskList {tasks} />
+		<TaskList {tasks} {loadTasks} />
 	{/if}
 </div>
