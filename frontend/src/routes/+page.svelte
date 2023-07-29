@@ -1,51 +1,21 @@
 <script lang="ts">
+	import { afterNavigate } from '$app/navigation';
 	import InputTask from '$lib/components/InputTask.svelte';
 	import TaskList from '$lib/components/TaskList.svelte';
 	import type { Task } from '$lib/types';
 
-	const tasks: Task[] = [
-		{
-			id: '1',
-			title: 'タスク1'
-		},
-		{
-			id: '2',
-			title: 'タスク2'
-		},
-		{
-			id: '3',
-			title: 'タスク3'
-		},
-		{
-			id: '1',
-			title: 'タスク1'
-		},
-		{
-			id: '2',
-			title: 'タスク2'
-		},
-		{
-			id: '3',
-			title: 'タスク3'
-		},
-		{
-			id: '1',
-			title: 'タスク1'
-		},
-		{
-			id: '2',
-			title: 'タスク2'
-		},
-		{
-			id: '3',
-			title: 'タスク3'
-		}
-	];
+	let taskRequest = new Promise<Task[]>(() => {});
+
+	afterNavigate(() => {
+		taskRequest = fetch(`/api/task/list`).then((res) => res.json());
+	});
 </script>
 
 <div class="flex flex-col gap-y-10">
 	<InputTask />
-	{#if tasks.length > 0}
-		<TaskList {tasks} />
-	{/if}
+	{#await taskRequest then tasks}
+		{#if tasks.length > 0}
+			<TaskList {tasks} />
+		{/if}
+	{/await}
 </div>
