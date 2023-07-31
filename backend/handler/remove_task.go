@@ -5,12 +5,14 @@ import (
 	"net/http"
 
 	"github.com/go-playground/validator/v10"
+	"github.com/jmoiron/sqlx"
 	"github.com/morimorig3/go_svelte_todo_app/backend/entity"
 	"github.com/morimorig3/go_svelte_todo_app/backend/store"
 )
 
 type RemoveTask struct {
-	Store     *store.TaskStore
+	DB        *sqlx.DB
+	Repo      *store.Repository
 	Validator *validator.Validate
 }
 
@@ -34,6 +36,6 @@ func (rt *RemoveTask) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}, http.StatusBadRequest)
 		return
 	}
-	store.Tasks.Remove(b.ID)
+	rt.Repo.RemoveTask(ctx, rt.DB, &b.ID)
 	RespondJSON(ctx, w, nil, http.StatusOK)
 }

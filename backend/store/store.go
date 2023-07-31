@@ -36,12 +36,12 @@ func (ts *TaskStore) All() entity.Tasks {
 	tasks := []*entity.Task{}
 	for _, t := range ts.Tasks {
 		tasks = append(tasks, &entity.Task{
-			ID:     t.ID,
-			Title:  t.Title,
+			ID:    t.ID,
+			Title: t.Title,
 		})
 	}
 	sort.Slice(tasks, func(i, j int) bool {
-        return tasks[i].ID < tasks[j].ID
-    })
+		return tasks[i].ID < tasks[j].ID
+	})
 	return tasks
 }
